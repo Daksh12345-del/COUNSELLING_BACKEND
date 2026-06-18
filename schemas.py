@@ -3,7 +3,7 @@ from typing import Optional
 
 from pydantic import BaseModel, Field, field_validator
 
-from app.models import EnquiryStatus, BookingStatus
+from models import EnquiryStatus, BookingStatus
 
 
 # ---------- ENQUIRY ----------
