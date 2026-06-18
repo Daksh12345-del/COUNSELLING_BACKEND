@@ -9,15 +9,15 @@ from fastapi.responses import StreamingResponse
 from sqlalchemy import or_
 from sqlalchemy.orm import Session
 
-from app.config import settings
-from app.database import Base, engine, get_db
-from app.models import Enquiry, Booking, EnquiryStatus, BookingStatus
-from app.schemas import (
+from config import settings
+from database import Base, engine, get_db
+from models import Enquiry, Booking, EnquiryStatus, BookingStatus
+from schemas import (
     EnquiryCreate, EnquiryOut, EnquiryStatusUpdate,
     BookingCreate, BookingOut, BookingStatusUpdate, AvailableSlotsOut,
     AdminLogin, Token, StatsOut,
 )
-from app.auth import create_access_token, verify_admin_credentials, get_current_admin, get_current_admin_allow_query_token
+from auth import create_access_token, verify_admin_credentials, get_current_admin, get_current_admin_allow_query_token
 
 # Create tables if they don't exist yet (fine for a small single-server app;
 # for bigger projects switch fully to Alembic migrations)
