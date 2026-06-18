@@ -7,7 +7,7 @@ RESEND_URL = "https://api.resend.com/emails"
 
 # Your verified sender — must be from a domain you've verified in Resend
 FROM_EMAIL = "Sarvpratham Edu Consultants <noreply@sarvprathameduconsultants.com>"
-ADMIN_EMAIL = "info@sarvpratham.com"
+ADMIN_EMAIL = "edu.sarvprathampaath@gmail.com"
 
 
 def _send(to: list[str], subject: str, html: str) -> bool:
