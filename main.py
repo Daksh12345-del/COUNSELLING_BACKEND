@@ -18,6 +18,11 @@ from schemas import (
     AdminLogin, Token, StatsOut,
 )
 from auth import create_access_token, verify_admin_credentials, get_current_admin, get_current_admin_allow_query_token
+from email_service import (
+    send_enquiry_confirmation_to_user,
+    send_enquiry_alert_to_admin,
+    send_booking_alert_to_admin,
+)
 
 # Create tables if they don't exist yet (fine for a small single-server app;
 # for bigger projects switch fully to Alembic migrations)
@@ -71,6 +76,31 @@ def create_enquiry(payload: EnquiryCreate, db: Session = Depends(get_db)):
     db.add(enquiry)
     db.commit()
     db.refresh(enquiry)
+
+    # Send confirmation to user (only if they provided an email)
+    send_enquiry_confirmation_to_user(
+        name=payload.name,
+        phone=payload.phone,
+        email=payload.email,
+        student_class=payload.student_class,
+        stream=payload.stream,
+        course=payload.course,
+        city=payload.city,
+        message=payload.message,
+    )
+
+    # Always alert admin
+    send_enquiry_alert_to_admin(
+        name=payload.name,
+        phone=payload.phone,
+        email=payload.email,
+        student_class=payload.student_class,
+        stream=payload.stream,
+        course=payload.course,
+        city=payload.city,
+        message=payload.message,
+    )
+
     return enquiry
 
 
@@ -222,6 +252,18 @@ def create_booking(payload: BookingCreate, db: Session = Depends(get_db)):
     db.add(booking)
     db.commit()
     db.refresh(booking)
+
+    # Alert admin about the new booking
+    send_booking_alert_to_admin(
+        name=payload.name,
+        phone=payload.phone,
+        slot_date=payload.slot_date,
+        slot_time=payload.slot_time,
+        session_type=payload.session_type,
+        stream=payload.stream,
+        course=payload.course,
+    )
+
     return booking
 
 
