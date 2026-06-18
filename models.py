@@ -2,7 +2,7 @@ import enum
 
 from sqlalchemy import Column, Integer, String, Text, DateTime, Date, Enum as SAEnum, func
 
-from app.database import Base
+from database import Base
 
 
 class EnquiryStatus(str, enum.Enum):
