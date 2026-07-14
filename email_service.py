@@ -133,7 +133,7 @@ def send_enquiry_alert_to_admin(
           {table_rows}
         </table>
         <div style="margin-top:20px;text-align:center;">
-          <a href="https://sarvprathameduconsultants.com/#admin"
+          <a href="https://sarvprathameduconsultants.com/admin.html"
              style="background:#1a3c5e;color:#fff;padding:12px 28px;border-radius:6px;text-decoration:none;font-size:14px;">
             Open Admin Dashboard →
           </a>
@@ -205,7 +205,7 @@ def send_booking_alert_to_admin(
           {table_rows}
         </table>
         <div style="margin-top:20px;text-align:center;">
-          <a href="https://sarvprathameduconsultants.com/#admin"
+          <a href="https://sarvprathameduconsultants.com/admin.html"
              style="background:#0f5132;color:#fff;padding:12px 28px;border-radius:6px;text-decoration:none;font-size:14px;">
             View Bookings Dashboard →
           </a>
